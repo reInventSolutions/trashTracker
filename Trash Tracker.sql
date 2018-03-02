@@ -53,12 +53,12 @@ CREATE TABLE Routes (
   WeightID INTEGER(50) NOT NULL,
   Driver VARCHAR(10) NOT NULL,
   CONSTRAINT RouteNumberPK PRIMARY KEY (RouteNumber),
-  CONSTRAINT WeightFK FOREIGN KEY(WeightID) REFERENCES Weights(Weight)
+  CONSTRAINT WeightFK2 FOREIGN KEY(WeightID) REFERENCES Weights(Weight)
 );
 CREATE TABLE Trucks (
   LicensePlate VARCHAR(10) NOT NULL,
   TruckNumber VARCHAR(10) NOT NULL,
-  RouteNumber VARCHAR(10) NOT NULL,
+  RouteNumber INTEGER(10) NOT NULL,
   CONSTRAINT LicensePlatePK PRIMARY KEY (LicensePlate),
   CONSTRAINT RouteFK FOREIGN KEY (RouteNumber) REFERENCES Routes(RouteNumber)
 );
@@ -67,7 +67,7 @@ CREATE TABLE Drivers (
   Name VARCHAR(50) NOT NULL,
   TruckID VARCHAR(10) NOT NULL,
   CONSTRAINT EmployeePK PRIMARY KEY (EmployeeID),
-  CONSTRAINT TruckFK FOREIGN KEY(TruckID) REFERENCES Trucks(TruckNumber)
+  CONSTRAINT TruckFK FOREIGN KEY(TruckID) REFERENCES Trucks(LicensePlate)
 );
 
 INSERT INTO `users` (`ID`, `password`, `email`) VALUES
